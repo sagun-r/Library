@@ -20,16 +20,21 @@
 
 .main-container {
   display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  grid-template-rows: repeat(auto-fill, 150px);
+  gap: 10px;
   padding: 10px 10px;
   width: 100vw;
-  height: 90vh;
+  height: 100vh;
   background-color: rgb(230 230 230);
 }
 
-.main-container p {
-  position: absolute;
-  top: 50vh;
-  left: 6vw;
+.main-container .empty-msg {
+  height: 80vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   color: #cecece;
   font-size: 2em;
 }
@@ -52,14 +57,26 @@
   height: 200px;
 }
 
+div > label {
+  position: absolute;
+}
+.add-book-wrapper {
+  display: grid;
+  z-index: 1;
+  position: absolute;
+  right: 0;
+  top: 90px;
+  width: 200px;
+  height: auto;
+  border: 1px red solid;
+}
+
 .login-form {
   display: flex;
   flex-direction: column;
-  align-items: left;
+  align-items: end;
 }
 
 .card-container {
-  height: 100px;
-  width: 100px;
   border: 1px red solid;
 }
