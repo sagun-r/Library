@@ -154,11 +154,12 @@ input:focus ~ label {
   font-size: 0.8em;
 }
 
-.total-page {
-  font-size: 0.7em;
+.completion-info {
+  display: flex;
 }
-
-.page-read {
+.page-read,
+.total-page,
+.percentRead {
   font-size: 0.7em;
 }
 

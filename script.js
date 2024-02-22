@@ -4,11 +4,13 @@ const myLibrary = [
   ["Daughter of Fortune", "Isabel Allende", "496", "72"],
 ];
 
-const p = document.querySelector(".empty-msg");
 const addBtn = document.querySelector(".add-btn");
-const mainContainer = document.querySelector(".main-container");
-const submitBtn = document.querySelector("#submit");
+
 const addBookWrapper = document.querySelector(".add-book-wrapper");
+const submitBtn = document.querySelector("#submit");
+
+const mainContainer = document.querySelector(".main-container");
+const p = document.querySelector(".empty-msg");
 
 //gets rid of add book section if open when clicked on main body
 mainContainer.addEventListener("click", () => {
@@ -34,10 +36,16 @@ submitBtn.addEventListener("click", () => {
   bookTitle.classList.add("book-title");
   const bookAuthor = document.createElement("p");
   bookAuthor.classList.add("book-author");
+
+  const completionInfo = document.createElement("div");
+  completionInfo.classList.add("completion-info");
   const totalPage = document.createElement("p");
   totalPage.classList.add("total-page");
   const pageRead = document.createElement("p");
   pageRead.classList.add("page-read");
+  const percentRead = document.createElement("p");
+  percentRead.classList.add("percentRead");
+
   const progressBar = document.createElement("progress");
 
   const titleValue = document.getElementById("bookTitle").value;
@@ -49,17 +57,23 @@ submitBtn.addEventListener("click", () => {
   progressBar.setAttribute("max", totalPagesValue);
 
   mainContainer.append(cardContainer);
-  cardContainer.append(bookTitle, bookAuthor, totalPage, pageRead, progressBar);
+  cardContainer.append(bookTitle, bookAuthor, completionInfo, progressBar);
+  completionInfo.append(pageRead, totalPage, percentRead);
 
   bookTitle.textContent = titleValue;
   bookAuthor.textContent = authorValue;
+  pageRead.textContent = pagesReadValue + "/";
   totalPage.textContent = totalPagesValue;
-  pageRead.textContent = pagesReadValue;
 
   // bookTitle.textContent = "Harry Potter and the Sorcerer's Stone";
   // bookAuthor.textContent = "J.K. Rowling";
-  // totalPage.textContent = "309";
   // pageRead.textContent = "238";
+  // totalPage.textContent = "309";
+
+  percentRead.textContent = "(" + ((pagesReadValue / totalPagesValue) * 100).toFixed(2) + "%)";
+  if (percentRead.textContent === "(100.00%)") {
+    percentRead.textContent = "(100% ✯)";
+  }
 });
 
 const Book = () => {
