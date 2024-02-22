@@ -1,6 +1,8 @@
 :root {
-  --boxshadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
-  --pop-up-background: white;
+  --boxshadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  --pop-up-background-color: #ffffff;
+  --body-background-color: rgb(230 230 230);
+  --empty-body-message-color: #cecece;
 }
 
 * {
@@ -46,7 +48,7 @@
   padding: 10px 10px;
   width: 100vw;
   height: 100vh;
-  background-color: rgb(230 230 230);
+  background-color: var(--body-background-color);
 }
 
 .main-container .empty-msg {
@@ -55,7 +57,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #cecece;
+  color: var(--empty-body-message-color);
   font-size: 2em;
 }
 
@@ -84,35 +86,39 @@
   height: 200px;
 }
 
-label {
-  position: absolute;
-}
-
 .add-book-wrapper {
-  background-color: var(--pop-up-background);
+  background-color: white;
   flex-direction: column;
+  justify-content: space-evenly;
   align-items: center;
   display: none;
-  justify-content: space-evenly;
   z-index: 1;
   position: absolute;
-  right: 0;
-  top: 80px;
+  right: 50px;
+  top: 70px;
   width: 170px;
   height: 150px;
-  box-shadow: var(--boxshadow);
+}
+
+label {
+  position: absolute;
+  color: rgb(111, 111, 111);
 }
 
 .book-detail input {
+  background-color: white;
+  border: 1px solid var(--empty-body-message-color);
+  border-radius: 5px;
   height: 2em;
   text-align: center;
+  box-shadow: var(--boxshadow);
 }
 
 input:valid ~ label,
 input:focus ~ label {
   position: absolute;
   left: 15px;
-  font-size: 0.7em;
+  font-size: 0.5em;
   transition: 0.4s;
 }
 
@@ -120,13 +126,44 @@ input:focus ~ label {
   display: flex;
   justify-content: center;
 }
+
+.card-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: var(--boxshadow);
+  /* padding: ; */
+}
+
+.card-container:hover {
+  background-color: rgba(5, 87, 128, 0.135);
+  cursor: pointer;
+}
+
+.book-title {
+  text-align: center;
+  font-size: 1em;
+}
+
+.book-author {
+  color: rgba(2, 2, 2, 0.456);
+  font-size: 0.8em;
+}
+
+.total-page {
+  font-size: 0.7em;
+}
+
+.page-read {
+  font-size: 0.7em;
+}
+
 .login-form {
   display: flex;
   flex-direction: column;
   align-items: end;
-}
-
-.card-container {
-  border: 1px red solid;
-  /* padding: ; */
 }
