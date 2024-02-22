@@ -5,8 +5,20 @@ const myLibrary = [["Harry Potter and the Sorcerer's Stone"], ["J.K. Rowling"], 
 const p = document.querySelector(".empty-msg");
 const addBtn = document.querySelector(".add-btn");
 const mainContainer = document.querySelector(".main-container");
+const submitBtn = document.querySelector("#submit");
+const addBookWrapper = document.querySelector(".add-book-wrapper");
 
 addBtn.addEventListener("click", () => {
+  if (addBookWrapper.style.display != "none") {
+    addBookWrapper.style.display = "none";
+    addBookWrapper.style.transition = "0s";
+  } else {
+    addBookWrapper.style.display = "flex";
+    addBookWrapper.style.transition = "ease 2s";
+  }
+});
+
+submitBtn.addEventListener("click", () => {
   p.remove();
   const cardContainer = document.createElement("div");
   cardContainer.classList.add("card-container");
