@@ -19,9 +19,23 @@
 .header {
   padding: 0px 20px;
   display: grid;
-  grid-template-columns: 1fr 0.1fr 0.3fr;
+  grid-template-columns: 1fr 0.1fr 0.25fr;
   align-items: center;
   box-shadow: var(--boxshadow);
+}
+
+.add-btn {
+  height: 50px;
+  width: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.add-btn:hover {
+  cursor: pointer;
+  background-color: red;
+  transition: ease-in-out all 0.5s;
 }
 
 .main-container {
@@ -43,6 +57,13 @@
   align-items: center;
   color: #cecece;
   font-size: 2em;
+}
+
+.card-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
 .login-btn {
@@ -92,6 +113,7 @@ input:focus ~ label {
   position: absolute;
   left: 15px;
   font-size: 0.7em;
+  transition: 0.4s;
 }
 
 .book-detail {

@@ -9,12 +9,10 @@ const submitBtn = document.querySelector("#submit");
 const addBookWrapper = document.querySelector(".add-book-wrapper");
 
 addBtn.addEventListener("click", () => {
-  if (addBookWrapper.style.display != "none") {
-    addBookWrapper.style.display = "none";
-    addBookWrapper.style.transition = "0s";
+  if (addBookWrapper.style.display != "") {
+    addBookWrapper.style.display = "";
   } else {
     addBookWrapper.style.display = "flex";
-    addBookWrapper.style.transition = "ease 2s";
   }
 });
 
@@ -30,19 +28,23 @@ submitBtn.addEventListener("click", () => {
   totalPage.classList.add("total-page");
   const pageRead = document.createElement("p");
   pageRead.classList.add("page-read");
+  const progressBar = document.createElement("progress");
 
   const titleValue = document.getElementById("bookTitle").value;
   const authorValue = document.getElementById("bookAuthor").value;
   const totalPagesValue = document.getElementById("totalPages").value;
   const pagesReadValue = document.getElementById("pagesRead").value;
 
-  mainContainer.append(cardContainer);
-  cardContainer.append(bookTitle, bookAuthor, totalPage, pageRead);
+  progressBar.setAttribute("value", pagesReadValue);
+  progressBar.setAttribute("max", totalPagesValue);
 
-  bookTitle.textContent = titleValue;
-  bookAuthor.textContent = authorValue;
-  totalPage.textContent = totalPagesValue;
-  pageRead.textContent = pagesReadValue;
+  mainContainer.append(cardContainer);
+  cardContainer.append(bookTitle, bookAuthor, totalPage, pageRead, progressBar);
+
+  bookTitle.textContent = "Book: " + titleValue;
+  bookAuthor.textContent = "Author: " + authorValue;
+  totalPage.textContent = "Total Pages: " + totalPagesValue;
+  pageRead.textContent = "Pages Read: " + pagesReadValue;
 });
 
 // const Book = () => {
