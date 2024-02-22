@@ -1,3 +1,8 @@
+:root {
+  --boxshadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  --pop-up-background: white;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -16,6 +21,7 @@
   display: grid;
   grid-template-columns: 1fr 0.1fr 0.3fr;
   align-items: center;
+  box-shadow: var(--boxshadow);
 }
 
 .main-container {
@@ -44,7 +50,7 @@
   justify-content: end;
 }
 
-.login:active:hover {
+.login:active {
   background-color: red;
 }
 
@@ -57,20 +63,41 @@
   height: 200px;
 }
 
-div > label {
+label {
   position: absolute;
 }
+
 .add-book-wrapper {
-  display: grid;
+  background-color: var(--pop-up-background);
+  flex-direction: column;
+  align-items: center;
+  display: flex;
+  justify-content: space-evenly;
   z-index: 1;
   position: absolute;
   right: 0;
-  top: 90px;
+  top: 80px;
   width: 200px;
-  height: auto;
-  border: 1px red solid;
+  height: 150px;
+  box-shadow: var(--boxshadow);
 }
 
+.book-detail input {
+  height: 2em;
+  text-align: center;
+}
+
+input:valid ~ label,
+input:focus ~ label {
+  position: absolute;
+  left: 30px;
+  font-size: 0.7em;
+}
+
+.book-detail {
+  display: flex;
+  justify-content: center;
+}
 .login-form {
   display: flex;
   flex-direction: column;
@@ -79,4 +106,5 @@ div > label {
 
 .card-container {
   border: 1px red solid;
+  /* padding: ; */
 }

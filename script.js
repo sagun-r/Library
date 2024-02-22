@@ -19,8 +19,18 @@ addBtn.addEventListener("click", () => {
   const pageRead = document.createElement("p");
   pageRead.classList.add("page-read");
 
+  const titleValue = document.getElementById("bookTitle").value;
+  const authorValue = document.getElementById("bookAuthor").value;
+  const totalPagesValue = document.getElementById("totalPages").value;
+  const pagesReadValue = document.getElementById("pagesRead").value;
+
   mainContainer.append(cardContainer);
   cardContainer.append(bookTitle, bookAuthor, totalPage, pageRead);
+
+  bookTitle.textContent = titleValue;
+  bookAuthor.textContent = authorValue;
+  totalPage.textContent = totalPagesValue;
+  pageRead.textContent = pagesReadValue;
 });
 
 // const Book = () => {
