@@ -30,7 +30,7 @@ addBtn.addEventListener("click", () => {
 
 submitBtn.addEventListener("click", () => {
   p.remove();
-
+  addBookToLibrary();
   const titleValue = document.getElementById("bookTitle").value;
   const authorValue = document.getElementById("bookAuthor").value;
   const cardBookPagesValue = document.getElementById("totalPages").value;
@@ -68,11 +68,6 @@ submitBtn.addEventListener("click", () => {
   cardPagesRead.textContent = pagesReadValue + "/";
   cardBookPages.textContent = cardBookPagesValue;
 
-  // cardBookTitle.textContent = "Harry Potter and the Sorcerer's Stone";
-  // cardBookAuthor.textContent = "J.K. Rowling";
-  // cardPagesRead.textContent = "238";
-  // cardBookPages.textContent = "309";
-
   //adds symbol if percent completed is 100%
   cardPercentRead.textContent = "(" + Math.round((pagesReadValue / cardBookPagesValue) * 100) + "%)";
   if (cardPercentRead.textContent === "(100%)") {
@@ -90,13 +85,18 @@ const addBookToLibrary = () => {
   myLibrary.push([titleValue, authorValue, cardBookPagesValue, pagesReadValue]);
 
   console.table(myLibrary);
+  Book();
 };
 
-// const Book = () => {
-//   myLibrary.forEach(addBookToLibrary);
-// };
-
-// Book();
+const Book = () => {
+  myLibrary.forEach((book) => {
+    console.log(book);
+    console.log(book[0]);
+    console.log(book[1]);
+    console.log(book[2]);
+    console.log(book[3]);
+  });
+};
 
 // const login = document.querySelector(".login");
 // login.addEventListener("click", () => {});
