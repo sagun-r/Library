@@ -3,6 +3,7 @@
   --pop-up-background-color: #ffffff;
   --body-background-color: rgb(230 230 230);
   --empty-body-message-color: #cecece;
+  --hover-color: rgba(5, 87, 128, 0.135);
 }
 
 * {
@@ -32,12 +33,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  border-radius: 10px;
 }
 
 .add-btn:hover {
   cursor: pointer;
-  background-color: red;
-  transition: ease-in-out all 0.5s;
+  background-color: var(--hover-color);
+  transition: ease-out 0.3s;
 }
 
 .main-container {
@@ -140,7 +142,7 @@ input:focus ~ label {
 }
 
 .card-container:hover {
-  background-color: rgba(5, 87, 128, 0.135);
+  background-color: var(--hover-color);
   cursor: pointer;
 }
 
@@ -157,9 +159,9 @@ input:focus ~ label {
 .completion-info {
   display: flex;
 }
-.page-read,
-.total-page,
-.percentRead {
+.card-pages-read,
+.card-book-pages,
+.card-percent-read {
   font-size: 0.7em;
 }
 

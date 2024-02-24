@@ -30,60 +30,73 @@ addBtn.addEventListener("click", () => {
 
 submitBtn.addEventListener("click", () => {
   p.remove();
-  const cardContainer = document.createElement("div");
-  cardContainer.classList.add("card-container");
-  const bookTitle = document.createElement("p");
-  bookTitle.classList.add("book-title");
-  const bookAuthor = document.createElement("p");
-  bookAuthor.classList.add("book-author");
-
-  const completionInfo = document.createElement("div");
-  completionInfo.classList.add("completion-info");
-  const totalPage = document.createElement("p");
-  totalPage.classList.add("total-page");
-  const pageRead = document.createElement("p");
-  pageRead.classList.add("page-read");
-  const percentRead = document.createElement("p");
-  percentRead.classList.add("percentRead");
-
-  const progressBar = document.createElement("progress");
 
   const titleValue = document.getElementById("bookTitle").value;
   const authorValue = document.getElementById("bookAuthor").value;
-  const totalPagesValue = document.getElementById("totalPages").value;
+  const cardBookPagesValue = document.getElementById("totalPages").value;
   const pagesReadValue = document.getElementById("pagesRead").value;
 
+  //container div
+  const cardContainer = document.createElement("div");
+  cardContainer.classList.add("card-container");
+  const cardBookTitle = document.createElement("p");
+  cardBookTitle.classList.add("book-title");
+  const cardBookAuthor = document.createElement("p");
+  cardBookAuthor.classList.add("book-author");
+  //completed info div
+  const completionInfo = document.createElement("div");
+  completionInfo.classList.add("completion-info");
+  const cardBookPages = document.createElement("p");
+  cardBookPages.classList.add("card-book-pages");
+  const cardPagesRead = document.createElement("p");
+  cardPagesRead.classList.add("card-pages-read");
+  const cardPercentRead = document.createElement("p");
+  cardPercentRead.classList.add("card-percent-read");
+
+  //initialize progress bar and set the attributes
+  const progressBar = document.createElement("progress");
   progressBar.setAttribute("value", pagesReadValue);
-  progressBar.setAttribute("max", totalPagesValue);
+  progressBar.setAttribute("max", cardBookPagesValue);
 
+  //append
   mainContainer.append(cardContainer);
-  cardContainer.append(bookTitle, bookAuthor, completionInfo, progressBar);
-  completionInfo.append(pageRead, totalPage, percentRead);
+  cardContainer.append(cardBookTitle, cardBookAuthor, completionInfo, progressBar);
+  completionInfo.append(cardPagesRead, cardBookPages, cardPercentRead);
 
-  bookTitle.textContent = titleValue;
-  bookAuthor.textContent = authorValue;
-  pageRead.textContent = pagesReadValue + "/";
-  totalPage.textContent = totalPagesValue;
+  cardBookTitle.textContent = titleValue;
+  cardBookAuthor.textContent = authorValue;
+  cardPagesRead.textContent = pagesReadValue + "/";
+  cardBookPages.textContent = cardBookPagesValue;
 
-  // bookTitle.textContent = "Harry Potter and the Sorcerer's Stone";
-  // bookAuthor.textContent = "J.K. Rowling";
-  // pageRead.textContent = "238";
-  // totalPage.textContent = "309";
+  // cardBookTitle.textContent = "Harry Potter and the Sorcerer's Stone";
+  // cardBookAuthor.textContent = "J.K. Rowling";
+  // cardPagesRead.textContent = "238";
+  // cardBookPages.textContent = "309";
 
-  percentRead.textContent = "(" + ((pagesReadValue / totalPagesValue) * 100).toFixed(2) + "%)";
-  if (percentRead.textContent === "(100.00%)") {
-    percentRead.textContent = "(100% ✯)";
+  //adds symbol if percent completed is 100%
+  cardPercentRead.textContent = "(" + Math.round((pagesReadValue / cardBookPagesValue) * 100) + "%)";
+  if (cardPercentRead.textContent === "(100%)") {
+    cardPercentRead.textContent = "(100% ✯)";
   }
+
+  addBookToLibrary();
 });
 
-const Book = () => {
-  myLibrary.forEach(addBookToLibrary);
+const addBookToLibrary = () => {
+  const titleValue = document.getElementById("bookTitle").value;
+  const authorValue = document.getElementById("bookAuthor").value;
+  const cardBookPagesValue = document.getElementById("totalPages").value;
+  const pagesReadValue = document.getElementById("pagesRead").value;
+  myLibrary.push([titleValue, authorValue, cardBookPagesValue, pagesReadValue]);
+
+  console.table(myLibrary);
 };
 
-/* const addBookToLibrary = () => {
+// const Book = () => {
+//   myLibrary.forEach(addBookToLibrary);
+// };
 
-};*/
-Book();
+// Book();
 
-const login = document.querySelector(".login");
+// const login = document.querySelector(".login");
 // login.addEventListener("click", () => {});
