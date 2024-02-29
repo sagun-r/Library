@@ -1,14 +1,8 @@
-const myLibrary = [
-  ["Harry Potter and the Sorcerer's Stone", "J.K. Rowling", "309", "238"],
-  ["Life of Pi", "Yann Martel", "352", "352"],
-  ["Daughter of Fortune", "Isabel Allende", "496", "72"],
-];
+const myLibrary = [];
 
 const addBtn = document.querySelector(".add-btn");
-
 const addBookWrapper = document.querySelector(".add-book-wrapper");
 const submitBtn = document.querySelector("#submit");
-
 const mainContainer = document.querySelector(".main-container");
 const p = document.querySelector(".empty-msg");
 
@@ -29,51 +23,9 @@ addBtn.addEventListener("click", () => {
 });
 
 submitBtn.addEventListener("click", () => {
-  p.remove();
-  addBookToLibrary();
-  const titleValue = document.getElementById("bookTitle").value;
-  const authorValue = document.getElementById("bookAuthor").value;
-  const cardBookPagesValue = document.getElementById("totalPages").value;
-  const pagesReadValue = document.getElementById("pagesRead").value;
-
-  //container div
-  const cardContainer = document.createElement("div");
-  cardContainer.classList.add("card-container");
-  const cardBookTitle = document.createElement("p");
-  cardBookTitle.classList.add("book-title");
-  const cardBookAuthor = document.createElement("p");
-  cardBookAuthor.classList.add("book-author");
-  //completed info div
-  const completionInfo = document.createElement("div");
-  completionInfo.classList.add("completion-info");
-  const cardBookPages = document.createElement("p");
-  cardBookPages.classList.add("card-book-pages");
-  const cardPagesRead = document.createElement("p");
-  cardPagesRead.classList.add("card-pages-read");
-  const cardPercentRead = document.createElement("p");
-  cardPercentRead.classList.add("card-percent-read");
-
-  //initialize progress bar and set the attributes
-  const progressBar = document.createElement("progress");
-  progressBar.setAttribute("value", pagesReadValue);
-  progressBar.setAttribute("max", cardBookPagesValue);
-
-  //append
-  mainContainer.append(cardContainer);
-  cardContainer.append(cardBookTitle, cardBookAuthor, completionInfo, progressBar);
-  completionInfo.append(cardPagesRead, cardBookPages, cardPercentRead);
-
-  cardBookTitle.textContent = titleValue;
-  cardBookAuthor.textContent = authorValue;
-  cardPagesRead.textContent = pagesReadValue + "/";
-  cardBookPages.textContent = cardBookPagesValue;
-
-  //adds symbol if percent completed is 100%
-  cardPercentRead.textContent = "(" + Math.round((pagesReadValue / cardBookPagesValue) * 100) + "%)";
-  if (cardPercentRead.textContent === "(100%)") {
-    cardPercentRead.textContent = "(100% ✯)";
+  if (myLibrary.length === 0) {
+    p.remove();
   }
-
   addBookToLibrary();
 });
 
@@ -88,15 +40,51 @@ const addBookToLibrary = () => {
   Book();
 };
 
+//display all books in library
 const Book = () => {
+  while (mainContainer.firstChild) {
+    //removes all child from the main container
+    mainContainer.removeChild(mainContainer.lastChild);
+  }
+
   myLibrary.forEach((book) => {
-    console.log(book);
-    console.log(book[0]);
-    console.log(book[1]);
-    console.log(book[2]);
-    console.log(book[3]);
+    //container div
+    const cardContainer = document.createElement("div");
+    cardContainer.classList.add("card-container");
+    const cardBookTitle = document.createElement("p");
+    cardBookTitle.classList.add("book-title");
+    const cardBookAuthor = document.createElement("p");
+    cardBookAuthor.classList.add("book-author");
+    //completed info div
+    const completionInfo = document.createElement("div");
+    completionInfo.classList.add("completion-info");
+    const cardBookPages = document.createElement("p");
+    cardBookPages.classList.add("card-book-pages");
+    const cardPagesRead = document.createElement("p");
+    cardPagesRead.classList.add("card-pages-read");
+    const cardPercentRead = document.createElement("p");
+    cardPercentRead.classList.add("card-percent-read");
+
+    //initialize progress bar and set the attributes
+    const progressBar = document.createElement("progress");
+    progressBar.setAttribute("value", book[3]);
+    progressBar.setAttribute("max", book[2]);
+
+    //append to parent
+    mainContainer.append(cardContainer);
+    cardContainer.append(cardBookTitle, cardBookAuthor, completionInfo, progressBar);
+    completionInfo.append(cardPagesRead, cardBookPages, cardPercentRead);
+
+    //assigns the values to display on card
+    cardBookTitle.textContent = book[0];
+    cardBookAuthor.textContent = book[1];
+    cardPagesRead.textContent = book[3] + "/";
+    cardBookPages.textContent = book[2];
+
+    //calculates percent read
+    cardPercentRead.textContent = "(" + Math.round((book[3] / book[2]) * 100) + "%)";
+    if (cardPercentRead.textContent === "(100%)") {
+      cardPercentRead.textContent = "(100% ✯)";
+    }
   });
 };
-
-// const login = document.querySelector(".login");
-// login.addEventListener("click", () => {});
