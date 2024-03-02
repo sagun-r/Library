@@ -126,6 +126,7 @@ const Book = () => {
     cardPercentRead.textContent = "(" + Math.round((book[3] / book[2]) * 100) + "%)";
     if (cardPercentRead.textContent === "(100%)") {
       cardPercentRead.textContent = "(100% ✯)";
+      completeBtn.textContent = "Read? ✅";
     }
   });
 };
