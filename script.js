@@ -1,4 +1,9 @@
-const myLibrary = [];
+const myLibrary = [
+  ["Harry Potter and the Sorcerer's Stone", "J.K. Rowling", "309", "238", "Read? ❌"],
+  ["Life of Pi", "Yann Martel", "352", "352", "Read? ✅"],
+  ["Daughter of Fortune", "Isabel Allende", "496", "72", "Read? ❌"],
+  ["Atomic Design", "Brad Frost", "189", "189", "Read? ✅"],
+];
 
 const addBtn = document.querySelector(".add-btn");
 const addBookWrapper = document.querySelector(".add-book-wrapper");
@@ -32,6 +37,7 @@ submitBtn.addEventListener("click", () => {
   addBookToLibrary();
 });
 
+let alertMsg = false;
 const addBookToLibrary = () => {
   const titleValue = document.getElementById("bookTitle").value;
   const authorValue = document.getElementById("bookAuthor").value;
@@ -40,6 +46,8 @@ const addBookToLibrary = () => {
   if (titleValue === "" || cardBookPagesValue === "" || pagesReadValue === "") {
     return alert("Please fill out all fields.");
   }
+
+  //adds to array
   myLibrary.push([titleValue, authorValue, cardBookPagesValue, pagesReadValue, bookRead]);
   document.getElementById("bookTitle").value = "";
   document.getElementById("bookAuthor").value = "";
@@ -47,6 +55,11 @@ const addBookToLibrary = () => {
   document.getElementById("pagesRead").value = "";
   addBookWrapper.style.display = "";
   console.table(myLibrary);
+
+  if (alertMsg === false) {
+    alert("Additional book has been added automatically for demo purposes. Feel free to delete and add your own.");
+    alertMsg = true;
+  }
   Book();
 };
 

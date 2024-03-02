@@ -45,7 +45,7 @@
 .main-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  grid-template-rows: repeat(auto-fill, 150px);
+  grid-template-rows: repeat(auto-fill, 170px);
   gap: 10px;
   padding: 10px 10px;
   width: 100vw;
@@ -167,7 +167,6 @@ input:focus ~ label {
   background-color: white;
   border-radius: 10px;
   box-shadow: var(--boxshadow);
-  /* padding: ; */
 }
 
 .card-container:hover {
