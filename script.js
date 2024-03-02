@@ -1,4 +1,8 @@
-const myLibrary = [];
+const myLibrary = [
+  ["Harry Potter and the Sorcerer's Stone", "J.K. Rowling", "309", "238"],
+  ["Life of Pi", "Yann Martel", "352", "352"],
+  ["Daughter of Fortune", "Isabel Allende", "496", "72"],
+];
 
 const addBtn = document.querySelector(".add-btn");
 const addBookWrapper = document.querySelector(".add-book-wrapper");
@@ -42,8 +46,8 @@ const addBookToLibrary = () => {
 
 //display all books in library
 const Book = () => {
+  //removes all child from the main container
   while (mainContainer.firstChild) {
-    //removes all child from the main container
     mainContainer.removeChild(mainContainer.lastChild);
   }
 
@@ -70,10 +74,26 @@ const Book = () => {
     progressBar.setAttribute("value", book[3]);
     progressBar.setAttribute("max", book[2]);
 
+    //delete button
+    const deleteBtn = document.createElement("button");
+    deleteBtn.classList.add("delete-btn");
+    deleteBtn.textContent = "Delete";
+    deleteBtn.addEventListener("click", () => {
+      // Find the index of the book in the myLibrary array
+      const index = Array.from(mainContainer.children).indexOf(cardContainer);
+
+      // Remove the book from the myLibrary array
+      myLibrary.splice(index, 1);
+
+      // Remove the cardContainer from the DOM
+      cardContainer.remove();
+    });
+
     //append to parent
     mainContainer.append(cardContainer);
     cardContainer.append(cardBookTitle, cardBookAuthor, completionInfo, progressBar);
     completionInfo.append(cardPagesRead, cardBookPages, cardPercentRead);
+    cardContainer.append(deleteBtn);
 
     //assigns the values to display on card
     cardBookTitle.textContent = book[0];
