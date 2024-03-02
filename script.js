@@ -1,11 +1,10 @@
-const myLibrary = [
-  ["Harry Potter and the Sorcerer's Stone", "J.K. Rowling", "309", "238"],
-  ["Life of Pi", "Yann Martel", "352", "352"],
-  ["Daughter of Fortune", "Isabel Allende", "496", "72"],
-];
+const myLibrary = [];
 
 const addBtn = document.querySelector(".add-btn");
 const addBookWrapper = document.querySelector(".add-book-wrapper");
+
+const readBtn = document.querySelector("#readBtn");
+
 const submitBtn = document.querySelector("#submit");
 const mainContainer = document.querySelector(".main-container");
 const p = document.querySelector(".empty-msg");
@@ -38,11 +37,29 @@ const addBookToLibrary = () => {
   const authorValue = document.getElementById("bookAuthor").value;
   const cardBookPagesValue = document.getElementById("totalPages").value;
   const pagesReadValue = document.getElementById("pagesRead").value;
-  myLibrary.push([titleValue, authorValue, cardBookPagesValue, pagesReadValue]);
-
+  if (titleValue === "" || cardBookPagesValue === "" || pagesReadValue === "") {
+    return alert("Please fill out all fields.");
+  }
+  myLibrary.push([titleValue, authorValue, cardBookPagesValue, pagesReadValue, bookRead]);
+  document.getElementById("bookTitle").value = "";
+  document.getElementById("bookAuthor").value = "";
+  document.getElementById("totalPages").value = "";
+  document.getElementById("pagesRead").value = "";
+  addBookWrapper.style.display = "";
   console.table(myLibrary);
   Book();
 };
+
+let bookRead = "Read? ❌";
+readBtn.addEventListener("click", () => {
+  if (readBtn.textContent === "Read? ❌") {
+    bookRead = "Read? ✅";
+    readBtn.textContent = bookRead;
+  } else if (readBtn.textContent === "Read? ✅") {
+    bookRead = "Read? ❌";
+    readBtn.textContent = bookRead;
+  }
+});
 
 //display all books in library
 const Book = () => {
@@ -74,6 +91,10 @@ const Book = () => {
     progressBar.setAttribute("value", book[3]);
     progressBar.setAttribute("max", book[2]);
 
+    const completeBtn = document.createElement("button");
+    completeBtn.classList.add("complete-btn");
+    completeBtn.textContent = book[4];
+
     //delete button
     const deleteBtn = document.createElement("button");
     deleteBtn.classList.add("delete-btn");
@@ -93,7 +114,7 @@ const Book = () => {
     mainContainer.append(cardContainer);
     cardContainer.append(cardBookTitle, cardBookAuthor, completionInfo, progressBar);
     completionInfo.append(cardPagesRead, cardBookPages, cardPercentRead);
-    cardContainer.append(deleteBtn);
+    cardContainer.append(completeBtn, deleteBtn);
 
     //assigns the values to display on card
     cardBookTitle.textContent = book[0];
