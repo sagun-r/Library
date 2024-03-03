@@ -76,6 +76,7 @@ readBtn.addEventListener("click", () => {
 
 //display all books in library
 const Book = () => {
+  console.table(myLibrary);
   //removes all child from the main container
   while (mainContainer.firstChild) {
     mainContainer.removeChild(mainContainer.lastChild);
@@ -107,6 +108,17 @@ const Book = () => {
     const completeBtn = document.createElement("button");
     completeBtn.classList.add("complete-btn");
     completeBtn.textContent = book[4];
+
+    completeBtn.addEventListener("click", () => {
+      alert(book[4]);
+      if (book[4] === "Read? ❌") {
+        book[4] = "Read? ✅";
+        Book();
+      } else if (book[4] === "Read? ✅") {
+        book[4] = "Read? ❌";
+        Book();
+      }
+    });
 
     //delete button
     const deleteBtn = document.createElement("button");
