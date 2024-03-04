@@ -54,7 +54,7 @@ const addBookToLibrary = () => {
   console.table(myLibrary);
 
   if (alertMsg === false) {
-    alert("Additional book has been added automatically for demo purposes. Feel free to delete and add your own.");
+    alert("Additional books have been automatically added for demo purposes. Please feel free to delete and add your own book(s).");
     alertMsg = true;
   }
   Book();
