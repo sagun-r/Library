@@ -42,6 +42,8 @@ const addBookToLibrary = () => {
   const pagesReadValue = document.getElementById("pagesRead").value;
   if (titleValue === "" || cardBookPagesValue === "" || pagesReadValue === "") {
     return alert("Please fill out all fields.");
+  } else if (pagesReadValue > cardBookPagesValue) {
+    return alert("Pages read cannot be more than total pages in the book.");
   }
 
   //adds to array
@@ -148,7 +150,7 @@ const Book = () => {
     cardPercentRead.textContent = "(" + Math.round((book[3] / book[2]) * 100) + "%)";
     if (cardPercentRead.textContent === "(100%)") {
       cardPercentRead.textContent = "(100% ✯)";
-      completeBtn.textContent = "Read? ✅";
+      // completeBtn.textContent = "Read? ✅";
     }
   });
 };
