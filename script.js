@@ -109,8 +109,8 @@ const Book = () => {
     completeBtn.classList.add("complete-btn");
     completeBtn.textContent = book[4];
 
+    //changes read status on card
     completeBtn.addEventListener("click", () => {
-      alert(book[4]);
       if (book[4] === "Read? ❌") {
         book[4] = "Read? ✅";
         Book();
