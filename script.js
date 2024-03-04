@@ -31,9 +31,6 @@ addBtn.addEventListener("click", () => {
 });
 
 submitBtn.addEventListener("click", () => {
-  if (myLibrary.length === 0) {
-    p.remove();
-  }
   addBookToLibrary();
 });
 
